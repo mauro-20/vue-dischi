@@ -1,7 +1,7 @@
 <template>
   <header>
     <div class="logo">
-      <img :src="src" alt="Logo">
+      <img :src="logoSrc" alt="Logo">
     </div>
   </header>
 </template>
@@ -9,7 +9,7 @@
 <script>
 export default {
   name: 'Header',
-  props: ['src']
+  props: ['logoSrc']
 }
 </script>
 
