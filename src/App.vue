@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header :logo-src="require('./assets/images/spotify-logo.png')"/>
-    <Albums/>
+    <Header :logo-src="require('./assets/images/spotify-logo.png')" @selectGenre="selectGenre"/>
+    <Albums :genre="genre"/>
   </div>
 </template>
 
@@ -14,6 +14,17 @@ export default {
   components: {
     Header,
     Albums
+  },
+  data() {
+    return {
+      genre: ''
+    }
+  },
+  methods: {
+    selectGenre(genre) {
+      console.log(genre);
+      this.genre = genre
+    }
   }
 }
 </script>
