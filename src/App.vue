@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-    <Header :logo-src="require('./assets/images/spotify-logo.png')" @selectGenre="selectGenre"/>
-    <Albums :genre="genre"/>
+    <Header :logo-src="require('./assets/images/spotify-logo.png')" :genres="genres" @selectGenre="selectGenre"/>
+    <Albums @genreList="genreList" :genre="selectedGenre"/>
   </div>
 </template>
 
@@ -17,13 +17,17 @@ export default {
   },
   data() {
     return {
-      genre: ''
+      genres: [],
+      selectedGenre: ''
     }
   },
   methods: {
     selectGenre(genre) {
       console.log(genre);
-      this.genre = genre
+      this.selectedGenre = genre
+    },
+    genreList(list){
+      this.genres = list
     }
   }
 }

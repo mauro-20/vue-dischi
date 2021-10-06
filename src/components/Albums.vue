@@ -1,7 +1,11 @@
 <template>
   <section class="albums">
     <div class="container">
-      <Album v-for="(album, index) in filterByGenre" :key="index" :info="album" />
+      <Album
+        v-for="(album, index) in filterByGenre"
+        :key="index"
+        :info="album"
+      />
     </div>
   </section>
 </template>
@@ -28,15 +32,25 @@ export default {
       .get("https://flynn.boolean.careers/exercises/api/array/music")
       .then((res) => {
         this.albums = res.data.response;
+        const genreList = [];
+        this.albums.forEach((album) => {
+          if (!genreList.includes(album.genre)) {
+            genreList.push(album.genre);
+          }
+        });
+        this.$emit("genreList", genreList);
       });
   },
   computed: {
     filterByGenre() {
       return this.albums.filter((album) => {
-        return album.genre.toLowerCase() == this.genre.toLowerCase();
+        return (
+          album.genre == this.genre||
+          this.genre == ""
+        );
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -50,7 +64,6 @@ export default {
 .container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
   align-content: flex-start;
   max-width: $sizeContainer;
   margin: 0 auto;

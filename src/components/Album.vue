@@ -25,6 +25,7 @@ export default {
     align-items: center;
     width: calc(100% / 5 - 1.25rem);
     background-color: $headerBgColor;
+    margin-right: 1.25rem;
     margin-bottom: 1.5625rem;
     padding: 1.5625rem;
     text-align: center;
